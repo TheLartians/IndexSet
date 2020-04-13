@@ -1,9 +1,9 @@
-[![Actions Status](https://github.com/TheLartians/ModernCPPStarter/workflows/MacOS/badge.svg)](https://github.com/TheLartians/Greeter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCPPStarter/workflows/Windows/badge.svg)](https://github.com/TheLartians/Greeter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCPPStarter/workflows/Ubuntu/badge.svg)](https://github.com/TheLartians/Greeter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCPPStarter/workflows/Style/badge.svg)](https://github.com/TheLartians/Greeter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCPPStarter/workflows/Install/badge.svg)](https://github.com/TheLartians/Greeter/actions)
-[![codecov](https://codecov.io/gh/TheLartians/ModernCPPStarter/branch/master/graph/badge.svg)](https://codecov.io/gh/TheLartians/ModernCPPStarter)
+[![Actions Status](https://github.com/TheLartians/IndexSet/workflows/MacOS/badge.svg)](https://github.com/TheLartians/Greeter/actions)
+[![Actions Status](https://github.com/TheLartians/IndexSet/workflows/Windows/badge.svg)](https://github.com/TheLartians/Greeter/actions)
+[![Actions Status](https://github.com/TheLartians/IndexSet/workflows/Ubuntu/badge.svg)](https://github.com/TheLartians/Greeter/actions)
+[![Actions Status](https://github.com/TheLartians/IndexSet/workflows/Style/badge.svg)](https://github.com/TheLartians/Greeter/actions)
+[![Actions Status](https://github.com/TheLartians/IndexSet/workflows/Install/badge.svg)](https://github.com/TheLartians/Greeter/actions)
+[![codecov](https://codecov.io/gh/TheLartians/IndexSet/branch/master/graph/badge.svg)](https://codecov.io/gh/TheLartians/IndexSet)
 
 # ModernCPPStarter
 

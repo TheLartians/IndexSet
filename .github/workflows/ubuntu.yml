@@ -4,7 +4,7 @@ on: [push]
 
 env:
   CTEST_OUTPUT_ON_FAILURE: 1
-  CODECOV_TOKEN: "531dc9eb-3fa5-443e-a986-1eed3c795dee"
+  # CODECOV_TOKEN: "531dc9eb-3fa5-443e-a986-1eed3c795dee"
 
 jobs:
   build:
@@ -25,5 +25,5 @@ jobs:
         cd build
         ctest --build-config Debug
 
-    - name: collect code coverage
-      run: bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+    # - name: collect code coverage
+    #   run: bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
