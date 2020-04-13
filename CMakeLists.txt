@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
 # ---- Project ----
 
-project(Greeter 
+project(IndexSet 
   VERSION 1.0
   LANGUAGES CXX
 )
@@ -15,48 +15,37 @@ endif()
 
 # ---- Add source files ----
 
-# Note: globbing sources is considered bad practice as CMake won't detect new files automatically.
-# Remember to always invoke cmake after changing files, or explicitly mention them here.
 FILE(GLOB_RECURSE headers "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 FILE(GLOB_RECURSE sources "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
 
 # ---- Add dependencies via CPM (if required) ----
-# see https://github.com/TheLartians/CPM.cmake for more info
 
-# include(cmake/CPM.cmake)
+include(cmake/CPM.cmake)
 
-# CPMAddPackage(
-#   NAME cxxopts
-#   GITHUB_REPOSITORY jarro2783/cxxopts
-#   VERSION 2.2.0
-#   OPTIONS
-#     "CXXOPTS_BUILD_EXAMPLES Off"
-#     "CXXOPTS_BUILD_TESTS Off"
-# )
+CPMAddPackage(
+  NAME BitLens
+  GITHUB_REPOSITORY TheLartians/BitLens
+  VERSION 2.1
+)
 
 # ---- Create library ----
 
-# Notes:
-# for single header libraries use `add_library(Greeter INTERFACE)` instead 
-# To create an executable use `add_executable(Greeter ${headers} ${sources})`
-add_library(Greeter ${headers} ${sources})
+add_library(IndexSet ${headers} ${sources})
 
-# Note: for single header libraries use the following instead:
-# set_target_properties(Greeter PROPERTIES INTERFACE_COMPILE_FEATURES cxx_std_17)
-set_target_properties(Greeter PROPERTIES CXX_STANDARD 17)
+set_target_properties(IndexSet PROPERTIES CXX_STANDARD 17)
 
-# Link dependencies (if required)
-# target_link_libraries(Greeter cxxopts)
+# Link dependencies
+target_link_libraries(IndexSet BitLens)
 
 # Node: change PUBLIC to INTERFACE for single header libraries  
-target_include_directories(Greeter
+target_include_directories(IndexSet
   PUBLIC 
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
 
 # ---- Create an installable target ----
-# this allows users install and find the library via `find_package(Greeter)`.
+# this allows users install and find the library via `find_package(IndexSet)`.
 
 include(CMakePackageConfigHelpers)
 

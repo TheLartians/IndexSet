@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
-project(GreeterTests
+project(IndexSetTests
   LANGUAGES CXX
 )
 
@@ -21,10 +21,10 @@ CPMAddPackage(
 )
 
 if (TEST_INSTALLED_VERSION)
-  find_package(Greeter)
+  find_package(IndexSet)
 else()
   CPMAddPackage(
-    NAME Greeter
+    NAME IndexSet
     SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..
   )
 endif()
@@ -38,23 +38,23 @@ CPMAddPackage(
 # ---- Create binary ----
 
 file(GLOB sources ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
-add_executable(GreeterTests ${sources})
-target_link_libraries(GreeterTests doctest Greeter)
+add_executable(IndexSetTests ${sources})
+target_link_libraries(IndexSetTests doctest IndexSet)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-  set_target_properties(GreeterTests PROPERTIES CXX_STANDARD 17 COMPILE_FLAGS "-Wall -pedantic -Wextra -Werror")
+  set_target_properties(IndexSetTests PROPERTIES CXX_STANDARD 17 COMPILE_FLAGS "-Wall -pedantic -Wextra -Werror")
 else()
-  set_target_properties(GreeterTests PROPERTIES CXX_STANDARD 17)
+  set_target_properties(IndexSetTests PROPERTIES CXX_STANDARD 17)
 endif()
 
-# ---- Add GreeterTests ----
+# ---- Add IndexSetTests ----
 
 ENABLE_TESTING() 
-ADD_TEST(GreeterTests GreeterTests)
+ADD_TEST(IndexSetTests IndexSetTests)
 
 # ---- code coverage ----
 
 if (${ENABLE_TEST_COVERAGE})
-  set_target_properties(Greeter PROPERTIES CXX_STANDARD 17 COMPILE_FLAGS "-O0 -g -fprofile-arcs -ftest-coverage --coverage")
-  target_link_options(Greeter PUBLIC "--coverage")
+  set_target_properties(IndexSet PROPERTIES CXX_STANDARD 17 COMPILE_FLAGS "-O0 -g -fprofile-arcs -ftest-coverage --coverage")
+  target_link_options(IndexSet PUBLIC "--coverage")
 endif()
