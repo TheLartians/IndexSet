@@ -3,13 +3,15 @@
 
 #include <sstream>
 
-TEST_CASE("IndexSet") {
+TEST_CASE("Basic operations") {
   using namespace index_set;
 
   IndexSet index;
   index.addIndex(45);
+  CHECK(== index.bits().size());
   CHECK(index.hasIndex(45));
   CHECK(!index.hasIndex(46));
+  CHECK(index.hasIndex(index.upperBound()) == false);
   CHECK(!index.isEmpty());
   CHECK(index == createIndexSetFromIndex(45));
   CHECK(index != createIndexSetFromIndex(44));
@@ -25,7 +27,9 @@ TEST_CASE("IndexSet") {
   index.clear();
   CHECK(index == createIndexSetFromIndices({}));
   CHECK(index.isEmpty());
+}
 
+TEST_CASE("Printing") {
   std::stringstream stream;
   stream << createIndexSetFromIndices({1, 3, 4});
   CHECK(stream.str() == "[1,3,4]");
