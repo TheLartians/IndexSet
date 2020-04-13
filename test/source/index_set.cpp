@@ -1,5 +1,6 @@
 #include <doctest/doctest.h>
 #include <index_set.h>
+
 #include <sstream>
 
 TEST_CASE("IndexSet") {
@@ -28,5 +29,4 @@ TEST_CASE("IndexSet") {
   std::stringstream stream;
   stream << createIndexSetFromIndices({1, 3, 4});
   CHECK(stream.str() == "[1,3,4]");
-
 }

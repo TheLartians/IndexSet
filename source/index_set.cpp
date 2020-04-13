@@ -1,5 +1,5 @@
-#include <index_set.h>
 #include <easy_iterator.h>
+#include <index_set.h>
 
 using namespace index_set;
 
@@ -17,22 +17,13 @@ IndexSet index_set::createIndexSetFromIndices(const std::vector<IndexSet::Index>
   return IndexSet;
 }
 
-bit_lens::Lens<IndexSet::Data> IndexSet::bits() {
-  return bit_lens::BitLens(data);
-}
+bit_lens::Lens<IndexSet::Data> IndexSet::bits() { return bit_lens::BitLens(data); }
 
-bit_lens::Lens<const IndexSet::Data> IndexSet::bits() const {
-  return bit_lens::BitLens(data);
-}
+bit_lens::Lens<const IndexSet::Data> IndexSet::bits() const { return bit_lens::BitLens(data); }
 
+bool IndexSet::operator==(const IndexSet &other) const { return this->data == other.data; }
 
-bool IndexSet::operator==(const IndexSet &other) const {
-  return this->data == other.data;
-}
-
-bool IndexSet::operator!=(const IndexSet &other) const {
-  return this->data != other.data;
-}
+bool IndexSet::operator!=(const IndexSet &other) const { return this->data != other.data; }
 
 void IndexSet::ensureFits(Index idx) {
   if (bits().size() <= idx) {
