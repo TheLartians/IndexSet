@@ -41,7 +41,7 @@ add_library(IndexSet ${headers} ${sources})
 set_target_properties(IndexSet PROPERTIES CXX_STANDARD 17)
 
 # Link dependencies
-target_link_libraries(IndexSet BitLens EasyIterator)
+target_link_libraries(IndexSet PRIVATE BitLens EasyIterator)
 
 # Node: change PUBLIC to INTERFACE for single header libraries  
 target_include_directories(IndexSet

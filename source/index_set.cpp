@@ -1,6 +1,8 @@
 #include <easy_iterator.h>
 #include <index_set.h>
 
+#include <algorithm>
+
 using namespace index_set;
 
 IndexSet index_set::createIndexSetFromIndex(IndexSet::Index idx) {
