@@ -1,8 +1,9 @@
 #include <index_set.h>
+#include <easy_iterator.h>
 
 using namespace index_set;
 
-IndexSet index_set::createIndexsetFromIndex(IndexSet::Index idx) {
+IndexSet index_set::createIndexSetFromIndex(IndexSet::Index idx) {
   IndexSet IndexSet;
   IndexSet.addIndex(idx);
   return IndexSet;
@@ -95,4 +96,20 @@ size_t IndexSet::count() const {
     if (b) result++;
   }
   return result;
+}
+
+std::ostream &index_set::operator<<(std::ostream &stream, const IndexSet &indices) {
+  stream << '[';
+  bool separator = false;
+
+  for (auto [i, v] : easy_iterator::enumerate(indices.bits())) {
+    if (v) {
+      if (separator) stream << ',';
+      stream << i;
+      separator = true;
+    }
+  }
+
+  stream << ']';
+  return stream;
 }

@@ -28,6 +28,12 @@ CPMAddPackage(
   VERSION 2.1
 )
 
+CPMAddPackage(
+  NAME EasyIterator
+  VERSION 1.3
+  GITHUB_REPOSITORY TheLartians/EasyIterator
+)
+
 # ---- Create library ----
 
 add_library(IndexSet ${headers} ${sources})
@@ -35,7 +41,7 @@ add_library(IndexSet ${headers} ${sources})
 set_target_properties(IndexSet PROPERTIES CXX_STANDARD 17)
 
 # Link dependencies
-target_link_libraries(IndexSet BitLens)
+target_link_libraries(IndexSet BitLens EasyIterator)
 
 # Node: change PUBLIC to INTERFACE for single header libraries  
 target_include_directories(IndexSet

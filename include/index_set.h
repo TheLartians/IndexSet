@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <bit_lens.h>
+#include <ostream>
 
 namespace index_set {
 
@@ -32,7 +33,9 @@ namespace index_set {
       bool operator!=(const IndexSet &) const;
     };
 
-  IndexSet createIndexsetFromIndex(IndexSet::Index idx);
+  IndexSet createIndexSetFromIndex(IndexSet::Index idx);
   IndexSet createIndexSetFromIndices(const std::vector<IndexSet::Index> &input);
+
+  std::ostream &operator<<(std::ostream &, const IndexSet &);
 
 }
