@@ -38,6 +38,13 @@ void IndexSet::addIndex(Index idx) {
   bits()[idx] = true;
 }
 
+void IndexSet::removeIndex(Index idx) {
+  if (hasIndex(idx)) {
+    bits()[idx] = false;
+  }
+  tighten();
+}
+
 size_t IndexSet::upperBound() const { return bits().size(); }
 
 bool IndexSet::hasIndex(Index idx) const {

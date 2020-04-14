@@ -14,22 +14,27 @@ namespace index_set {
 
   private:
     Data data;
+    void tighten();
 
   public:
     bit_lens::BitLens<Data> bits();
     bit_lens::BitLens<const Data> bits() const;
 
     void ensureFits(Index idx);
-    void addIndex(Index idx);
-    void tighten();
+
     bool hasIndex(Index idx) const;
-    void remove(const IndexSet &other);
-    void clear();
-    size_t upperBound() const;
-    size_t count() const;
-    void intersect(const IndexSet &other);
+    void addIndex(Index idx);
+    void removeIndex(Index idx);
+
     void add(const IndexSet &other);
+    void remove(const IndexSet &other);
+    void intersect(const IndexSet &other);
+    void clear();
+
+    size_t upperBound() const;
     bool isEmpty() const;
+    size_t count() const;
+
     bool operator==(const IndexSet &) const;
     bool operator!=(const IndexSet &) const;
   };
