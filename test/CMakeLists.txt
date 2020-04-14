@@ -16,8 +16,7 @@ include(../cmake/CPM.cmake)
 CPMAddPackage(
   NAME doctest
   GITHUB_REPOSITORY onqtam/doctest
-  VERSION 2.3.2
-  GIT_TAG 2.3.2
+  GIT_TAG 2.3.7
 )
 
 if (TEST_INSTALLED_VERSION)
@@ -50,7 +49,8 @@ endif()
 # ---- Add IndexSetTests ----
 
 ENABLE_TESTING() 
-ADD_TEST(IndexSetTests IndexSetTests)
+include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
+doctest_discover_tests(IndexSetTests)
 
 # ---- code coverage ----
 

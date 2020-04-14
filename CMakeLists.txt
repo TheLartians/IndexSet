@@ -15,20 +15,26 @@ endif()
 
 # ---- Add source files ----
 
-FILE(GLOB_RECURSE headers "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
-FILE(GLOB_RECURSE sources "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
+FILE(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+FILE(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
 
 # ---- Add dependencies via CPM (if required) ----
 
 include(cmake/CPM.cmake)
 
 CPMAddPackage(
+  NAME PackageProject.cmake
+  GITHUB_REPOSITORY TheLartians/PackageProject.cmake
+  VERSION 1.0
+)
+
+CPMFindPackage(
   NAME BitLens
   GITHUB_REPOSITORY TheLartians/BitLens
   VERSION 2.1
 )
 
-CPMAddPackage(
+CPMFindPackage(
   NAME EasyIterator
   VERSION 1.3
   GITHUB_REPOSITORY TheLartians/EasyIterator
@@ -47,52 +53,16 @@ target_link_libraries(IndexSet PUBLIC BitLens EasyIterator)
 target_include_directories(IndexSet
   PUBLIC 
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
+    $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
 
 # ---- Create an installable target ----
-# this allows users install and find the library via `find_package(IndexSet)`.
+# this allows users to install and find the library via `find_package()`.
 
-include(CMakePackageConfigHelpers)
-
-write_basic_package_version_file(
-  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+packageProject(
+  NAME ${PROJECT_NAME}
   VERSION ${PROJECT_VERSION}
-  COMPATIBILITY AnyNewerVersion
-)
-
-install(
-  TARGETS ${PROJECT_NAME}
-  EXPORT ${PROJECT_NAME}Targets
-  LIBRARY DESTINATION lib COMPONENT Runtime
-  ARCHIVE DESTINATION lib COMPONENT Development
-  RUNTIME DESTINATION bin COMPONENT Runtime
-  PUBLIC_HEADER DESTINATION include COMPONENT Development
-  BUNDLE DESTINATION bin COMPONENT Runtime
-)
-
-include(CMakePackageConfigHelpers)
-
-configure_package_config_file(
-  "${PROJECT_SOURCE_DIR}/cmake/Config.cmake.in"
-  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-  INSTALL_DESTINATION lib/cmake/${PROJECT_NAME}
-)
-
-install(
-  EXPORT ${PROJECT_NAME}Targets 
-  DESTINATION lib/cmake/${PROJECT_NAME}
-)
-
-install(
-  FILES 
-    "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
-    "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-  DESTINATION 
-    lib/cmake/${PROJECT_NAME}
-)
-
-install(
-  DIRECTORY ${PROJECT_SOURCE_DIR}/include/
-  DESTINATION include
+  BINARY_DIR ${PROJECT_BINARY_DIR}
+  INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include
+  INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
 )
