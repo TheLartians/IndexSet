@@ -8,8 +8,9 @@ using namespace index_set;
 
 TEST_CASE("equality") {
   CHECK(createIndexSetFromIndices({2, 5, 6}) == createIndexSetFromIndices({2, 5, 6}));
-  CHECK(createIndexSetFromIndices({2, 5, 6}) != createIndexSetFromIndices({3, 5, 6}));
+  CHECK(createIndexSetFromIndices({2, 5, 6}) != createIndexSetFromIndices({2, 4, 6}));
   CHECK(createIndexSetFromIndices({2, 5, 6}) != createIndexSetFromIndices({}));
+  CHECK(createIndexSetFromIndices({42}) == createIndexSetFromIndex(42));
 }
 
 TEST_CASE("copy / move") {
@@ -63,7 +64,7 @@ TEST_CASE("intersect") {
 }
 
 TEST_CASE("isEmpty") {
-  IndexSet indices = createIndexSetFromIndices({1});
+  IndexSet indices = createIndexSetFromIndex(1);
   CHECK(!indices.isEmpty());
   indices.removeIndex(1);
   CHECK(indices.isEmpty());
