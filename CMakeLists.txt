@@ -36,8 +36,8 @@ CPMFindPackage(
 
 CPMFindPackage(
   NAME EasyIterator
-  VERSION 1.3
-  GITHUB_REPOSITORY TheLartians/EasyIterator
+  VERSION 1.4
+  GIT_REPOSITORY https://github.com/TheLartians/EasyIterator.git
 )
 
 # ---- Create library ----
