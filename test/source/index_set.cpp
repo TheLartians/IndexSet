@@ -88,3 +88,20 @@ TEST_CASE("Printing") {
   stream << createIndexSetFromIndices({1, 3, 4});
   CHECK(stream.str() == "[1,3,4]");
 }
+
+TEST_CASE("Iteration") {
+  IndexSet indices;
+
+  SUBCASE("with values") { indices = createIndexSetFromIndices({1, 4, 6, 12, 1024}); }
+
+  SUBCASE("without values") { indices = createIndexSetFromIndices({1, 4, 6, 12, 1024}); }
+
+  SUBCASE("with initial value") { indices = createIndexSetFromIndices({0}); }
+
+  IndexSet reference;
+  for (auto index : indices.indices()) {
+    CHECK(!reference.hasIndex(index));
+    reference.addIndex(index);
+  }
+  CHECK(indices == reference);
+}

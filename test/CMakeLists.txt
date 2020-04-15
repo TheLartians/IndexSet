@@ -36,15 +36,21 @@ CPMAddPackage(
 
 # ---- Create binary ----
 
-file(GLOB sources ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
+file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
 add_executable(IndexSetTests ${sources})
 target_link_libraries(IndexSetTests doctest IndexSet)
 
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-  set_target_properties(IndexSetTests PROPERTIES CXX_STANDARD 17 COMPILE_FLAGS "-Wall -pedantic -Wextra -Werror")
-else()
-  set_target_properties(IndexSetTests PROPERTIES CXX_STANDARD 17)
+set_target_properties(IndexSetTests PROPERTIES CXX_STANDARD 17)
+
+# enable compiler warnings
+if (NOT TEST_INSTALLED_VERSION)
+  if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    target_compile_options(IndexSet PUBLIC -Wall -pedantic -Wextra -Werror)
+  elseif(MSVC)
+    target_compile_options(IndexSet PUBLIC /W4 /WX)
+  endif()
 endif()
+
 
 # ---- Add IndexSetTests ----
 

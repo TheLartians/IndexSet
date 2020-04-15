@@ -1,4 +1,3 @@
-#include <easy_iterator.h>
 #include <index_set.h>
 
 #include <algorithm>
