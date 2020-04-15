@@ -45,6 +45,7 @@ CPMFindPackage(
 add_library(IndexSet ${headers} ${sources})
 
 set_target_properties(IndexSet PROPERTIES CXX_STANDARD 17)
+target_compile_options(IndexSet PUBLIC "$<$<BOOL:${MSVC}>:/permissive->")
 
 # Link dependencies
 target_link_libraries(IndexSet PUBLIC BitLens EasyIterator)
