@@ -92,10 +92,8 @@ TEST_CASE("Printing") {
 TEST_CASE("Iteration") {
   IndexSet indices;
 
+  SUBCASE("without values") {}
   SUBCASE("with values") { indices = createIndexSetFromIndices({1, 4, 6, 12, 1024}); }
-
-  SUBCASE("without values") { indices = createIndexSetFromIndices({1, 4, 6, 12, 1024}); }
-
   SUBCASE("with initial value") { indices = createIndexSetFromIndices({0}); }
 
   IndexSet reference;
