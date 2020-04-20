@@ -31,7 +31,7 @@ CPMAddPackage(
 CPMFindPackage(
   NAME BitLens
   GITHUB_REPOSITORY TheLartians/BitLens
-  VERSION 2.1
+  VERSION 2.2
 )
 
 CPMFindPackage(
