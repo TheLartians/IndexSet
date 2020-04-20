@@ -20,7 +20,7 @@ CPMAddPackage(
 )
 
 if (TEST_INSTALLED_VERSION)
-  find_package(IndexSet)
+  find_package(IndexSet REQUIRED)
 else()
   CPMAddPackage(
     NAME IndexSet
