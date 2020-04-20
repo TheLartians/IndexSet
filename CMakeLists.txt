@@ -25,7 +25,7 @@ include(cmake/CPM.cmake)
 CPMAddPackage(
   NAME PackageProject.cmake
   GITHUB_REPOSITORY TheLartians/PackageProject.cmake
-  VERSION 1.0
+  VERSION 1.1
 )
 
 CPMFindPackage(
@@ -37,7 +37,7 @@ CPMFindPackage(
 CPMFindPackage(
   NAME EasyIterator
   VERSION 1.4
-  GIT_REPOSITORY https://github.com/TheLartians/EasyIterator.git
+  GITHUB_REPOSITORY TheLartians/EasyIterator
 )
 
 # ---- Create library ----
@@ -66,4 +66,5 @@ packageProject(
   BINARY_DIR ${PROJECT_BINARY_DIR}
   INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include
   INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
+  DEPENDENCIES "EasyIterator;BitLens"
 )
