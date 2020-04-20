@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # ---- Project ----
 
 project(IndexSet 
-  VERSION 1.0
+  VERSION 0.2
   LANGUAGES CXX
 )
 
@@ -25,7 +25,7 @@ include(cmake/CPM.cmake)
 CPMAddPackage(
   NAME PackageProject.cmake
   GITHUB_REPOSITORY TheLartians/PackageProject.cmake
-  VERSION 1.1
+  VERSION 1.2
 )
 
 CPMFindPackage(
